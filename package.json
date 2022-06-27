@@ -1,13 +1,16 @@
 {
   "name": "vite",
+  "homepage": "https://genkihong.github.io/vite-furniture",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "gh-pages -d build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "pinia": "^2.0.14",
     "vue": "^3.2.25",
     "vue-router": "4"
