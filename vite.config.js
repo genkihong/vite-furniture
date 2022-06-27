@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/vite-furniture/',
   plugins: [vue()],
   resolve: {
     //設定別名
