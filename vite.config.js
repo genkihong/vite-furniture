@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     //設定別名
     alias: {
-      '@/': `${path.resolve(__dirname, 'src')}/`,
+      '@': path.resolve(__dirname, 'src'),
       '/images': 'src/assets/images',
     },
   },
