@@ -3,13 +3,13 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/vite-furniture/',
   plugins: [vue()],
   resolve: {
     //設定別名
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '/images': 'src/assets/images',
+      // '/images': 'src/assets/images',
     },
   },
+  base: process.env.NODE_ENV === 'production' ? '/vite-furniture/' : '/',
 });

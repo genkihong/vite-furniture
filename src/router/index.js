@@ -1,11 +1,15 @@
 import {
   createRouter,
   createWebHistory,
-  // createWebHashHistory,
+  createWebHashHistory,
 } from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '@/views/Home.vue';
 
 const routes = [
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+  },
   {
     path: '/',
     name: 'Home',
@@ -14,8 +18,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  // history: createWebHashHistory(),
+  // history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 export default router;

@@ -1,5 +1,11 @@
 <script setup>
+import { provide } from 'vue';
 import Recommend from '@/components/Recommend.vue';
+const imgUrl = import.meta.env.PROD ? import.meta.env.VITE_IMGURL : '';
+provide('imgUrl', imgUrl);
+// console.log(imgUrl);
+// console.log(process.env.NODE_ENV);
+// console.log(import.meta.env);
 </script>
 
 <template>
@@ -25,9 +31,10 @@ import Recommend from '@/components/Recommend.vue';
     <!-- banner -->
     <section class="banner mb-[60px] max-w-[1110px] mx-auto">
       <div
-        class="bg-center bg-cover bg-no-repeat relative"
-        style="background-image: url('/images/3ewLAKn.png'); height: 420px"
+        class="bg-center bg-cover bg-no-repeat relative h-[420px]"
+        :style="{ backgroundImage: `url(${imgUrl}/images/3ewLAKn.png)` }"
       >
+        <!-- style=" background-image: url('/images/3ewLAKn.png')"> -->
         <p class="text-white text-[32px] absolute left-12 bottom-12">
           窩窩家居<br />跟您一起品味生活
         </p>
@@ -118,11 +125,15 @@ import Recommend from '@/components/Recommend.vue';
 
 <style scoped>
 .hidden-scroll {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
 .hidden-scroll::-webkit-scrollbar {
   display: none;
 }
+
 /* Hide scrollbar for IE, Edge and Firefox */
 </style>

@@ -1,11 +1,12 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { storeToRefs } from 'pinia';
 import storeRecommend from '@/store/recommend';
 
 const { recommendData } = storeToRefs(storeRecommend()); //解構 storeRecommend()
 const scroll = ref(null); //取得模板元素
 const isActive = ref(false);
+const imgUrl = inject('imgUrl');
 
 let startX = 0;
 let startScrollLeft = 0;
@@ -53,13 +54,13 @@ const dragStop = () => {
           v-for="(item, index) in recommendData.first"
           :key="item.user"
         >
-          <img :src="`/images/${item.productImg}`" alt="" />
+          <img :src="`${imgUrl}/images/${item.productImg}`" alt="" />
           <div class="card-content ml-4">
             <div class="flex mb-2">
               <img
                 class="rounded-full h-10"
-                :src="`/images/${item.userImg}`"
-                alt="item.user"
+                :src="`${imgUrl}/images/${item.userImg}`"
+                :alt="item.user"
                 width="40"
               />
               <div class="ml-2">
@@ -78,13 +79,13 @@ const dragStop = () => {
           v-for="(item, index) in recommendData.second"
           :key="item.user"
         >
-          <img :src="`/images/${item.productImg}`" alt="" />
+          <img :src="`${imgUrl}/images/${item.productImg}`" alt="" />
           <div class="card-content ml-4">
             <div class="flex mb-2">
               <img
                 class="rounded-full h-10"
-                :src="`/images/${item.userImg}`"
-                alt="item.user"
+                :src="`${imgUrl}/images/${item.userImg}`"
+                :alt="item.user"
                 width="40"
               />
               <div class="ml-2">
@@ -106,6 +107,7 @@ const dragStop = () => {
   transition: all 0.2s;
   transform: scale(0.98);
   overflow: hidden;
+
   &.active {
     cursor: grabbing;
     transform: scale(1);
