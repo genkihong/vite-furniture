@@ -1,7 +1,7 @@
 # vite-furniture
 
 ## Demo
-genkihong.github.io/vite-furniture/#/
+https://genkihong.github.io/vite-furniture/#/
 
 ## Technique
 * [Vite](https://vitejs.dev/guide/#community-templates)
