@@ -2,15 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: Microsoft JhengHei, Avenir, Helvetica, Arial, 'Noto Sans',
+      sans-serif;
+  }
+}
 @layer components {
   .card {
     background-color: theme('colors.white');
     min-width: 350px;
     height: 96px;
-    /* border-radius: theme('borderRadius.lg');
-    box-shadow: theme('boxShadow.xl'); */
   }
   .card-content {
     padding: theme('spacing.3') 0 theme('spacing.3') theme('spacing.4');
+  }
+
+  .scroll-zone {
+    cursor: grab;
+    transition: all 0.2s;
+    transform: scale(0.98);
+    overflow: hidden;
+  }
+  .scroll-zone.active {
+    cursor: grabbing;
+    transform: scale(1);
+  }
+
+  .circle {
+    @apply border-[3px] border-black rounded-full h-[115px] w-[115px];
+  }
+  #transport li:nth-child(1):after,
+  #transport li:nth-child(2):after,
+  #transport li:nth-child(3):after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent transparent #000;
+    position: absolute;
+    top: 50px;
+    left: 150px;
   }
 }

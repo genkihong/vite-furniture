@@ -10,6 +10,7 @@ const imgUrl = inject('imgUrl');
 
 let startX = 0;
 let startScrollLeft = 0;
+
 //滑鼠按下時
 const dragStart = (e) => {
   isActive.value = true;
@@ -17,6 +18,7 @@ const dragStart = (e) => {
   startX = e.pageX; //起始座標
   startScrollLeft = scroll.value.scrollLeft; //捲軸起始值，預設為0
 };
+
 //滑鼠拖曳時
 const dragHandle = (e) => {
   // e.preventDefault();
@@ -28,6 +30,7 @@ const dragHandle = (e) => {
   //console.log(startX);
   //console.log(startScrollLeft);
 };
+
 //滑鼠離開或放開時
 const dragStop = () => {
   isActive.value = false;
@@ -101,16 +104,4 @@ const dragStop = () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.scroll-zone {
-  cursor: grab;
-  transition: all 0.2s;
-  transform: scale(0.98);
-  overflow: hidden;
-
-  &.active {
-    cursor: grabbing;
-    transform: scale(1);
-  }
-}
-</style>
+<style lang="scss" scoped></style>

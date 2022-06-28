@@ -1,6 +1,6 @@
 <script setup>
 import { provide } from 'vue';
-import Recommend from '@/components/Recommend.vue';
+import Recommend from './Recommend.vue';
 const imgUrl = import.meta.env.PROD ? import.meta.env.VITE_IMGURL : '';
 provide('imgUrl', imgUrl);
 // console.log(imgUrl);
@@ -22,8 +22,12 @@ provide('imgUrl', imgUrl);
           <li class="mr-12 hover:text-[#6A33F8]">
             <a href="#recommendation">好評推薦</a>
           </li>
-          <li class="mr-12 hover:text-[#6A33F8]"><a href="#">運送方式</a></li>
-          <li class="hover:text-[#6A33F8]"><a href="#">立即預訂</a></li>
+          <li class="mr-12 hover:text-[#6A33F8]">
+            <a href="#transport">運送方式</a>
+          </li>
+          <li class="hover:text-[#6A33F8]">
+            <a href="#booking">立即預訂</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -74,7 +78,7 @@ provide('imgUrl', imgUrl);
           <tr class="border-b">
             <td class="text-xl py-3">可單人自行組裝</td>
             <td class="text-[#6A33FF]">
-              <span class="material-symbols-outlined"> done </span>
+              <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td class="text-[#797979]">不一定</td>
             <td></td>
@@ -82,7 +86,7 @@ provide('imgUrl', imgUrl);
           <tr class="border-b">
             <td class="text-xl py-3">可多次重複拆裝</td>
             <td class="text-[#6A33FF]">
-              <span class="material-symbols-outlined">done</span>
+              <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td></td>
             <td></td>
@@ -90,7 +94,7 @@ provide('imgUrl', imgUrl);
           <tr class="border-b">
             <td class="text-xl py-3">床墊規格彈性大</td>
             <td class="text-[#6A33FF]">
-              <span class="material-symbols-outlined">done</span>
+              <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td class="text-[#797979]">不一定</td>
             <td class="text-[#797979]">不一定</td>
@@ -98,17 +102,17 @@ provide('imgUrl', imgUrl);
           <tr class="border-b">
             <td class="text-xl py-3">材質可長久使用</td>
             <td class="text-[#6A33FF]">
-              <span class="material-symbols-outlined">done</span>
+              <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td></td>
             <td class="text-[#6A33FF]">
-              <span class="material-symbols-outlined">done</span>
+              <i class="fa-solid fa-check fa-2xl"></i>
             </td>
           </tr>
           <tr class="border-b">
             <td class="text-xl py-3">小客車即可搬運</td>
             <td class="text-[#6A33FF]">
-              <span class="material-symbols-outlined">done</span>
+              <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td></td>
             <td></td>
@@ -117,23 +121,44 @@ provide('imgUrl', imgUrl);
       </table>
     </section>
     <!-- 好評推薦 -->
-    <section id="recommendation" class="bg-[#301E5F] pt-[60px] pb-20">
+    <section id="recommendation" class="bg-[#301E5F] pt-[60px] pb-20 mb-8">
       <Recommend />
+    </section>
+    <!-- 運送方式 -->
+    <section id="transport" class="w-full max-w-[730px] mx-auto">
+      <h2 class="text-center text-[28px] mb-8">運送方式</h2>
+      <ul class="flex text-center">
+        <li class="mr-[90px] relative">
+          <div class="circle flex items-center justify-center mb-2">
+            <i class="fa-solid fa-cart-shopping text-5xl"></i>
+          </div>
+          <p class="text-xl">STEP.1</p>
+          <p>選購商品</p>
+        </li>
+        <li class="mr-[90px] relative">
+          <div class="circle flex items-center justify-center mb-2">
+            <i class="fa-solid fa-list text-5xl"></i>
+          </div>
+          <p class="text-xl">STEP.2</p>
+          <p>填寫預定資料</p>
+        </li>
+        <li class="mr-[90px] relative">
+          <div class="circle flex items-center justify-center mb-2">
+            <i class="fa-solid fa-check text-5xl"></i>
+          </div>
+          <p class="text-xl">STEP.3</p>
+          <p>預定成功</p>
+        </li>
+        <li>
+          <div class="circle flex items-center justify-center mb-2">
+            <i class="fa-solid fa-envelope text-5xl"></i>
+          </div>
+          <p class="text-xl">STEP.4</p>
+          <p>Email 付款資訊</p>
+        </li>
+      </ul>
     </section>
   </div>
 </template>
 
-<style scoped>
-.hidden-scroll {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.hidden-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-</style>
+<style scoped></style>
