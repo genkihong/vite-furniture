@@ -58,7 +58,7 @@ const dragStop = () => {
           :key="item.user"
         >
           <img :src="`${imgUrl}/images/${item.productImg}`" alt="" />
-          <div class="card-content ml-4">
+          <div class="card-content">
             <div class="flex mb-2">
               <img
                 class="rounded-full h-10"
@@ -83,7 +83,7 @@ const dragStop = () => {
           :key="item.user"
         >
           <img :src="`${imgUrl}/images/${item.productImg}`" alt="" />
-          <div class="card-content ml-4">
+          <div class="card-content">
             <div class="flex mb-2">
               <img
                 class="rounded-full h-10"

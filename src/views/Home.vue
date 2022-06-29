@@ -1,6 +1,7 @@
 <script setup>
 import { provide } from 'vue';
-import Recommend from './Recommend.vue';
+import Recommend from '@/components/Recommend.vue';
+import Product from '@/components/Product.vue';
 const imgUrl = import.meta.env.PROD ? import.meta.env.VITE_IMGURL : '';
 provide('imgUrl', imgUrl);
 // console.log(imgUrl);
@@ -125,7 +126,7 @@ provide('imgUrl', imgUrl);
       <Recommend />
     </section>
     <!-- 運送方式 -->
-    <section id="transport" class="w-full max-w-[730px] mx-auto">
+    <section id="transport" class="w-full max-w-[730px] mx-auto mb-[72px]">
       <h2 class="text-center text-[28px] mb-8">運送方式</h2>
       <ul class="flex text-center">
         <li class="mr-[90px] relative">
@@ -157,6 +158,10 @@ provide('imgUrl', imgUrl);
           <p>Email 付款資訊</p>
         </li>
       </ul>
+    </section>
+    <!-- 產品列表 -->
+    <section>
+      <Product />
     </section>
   </div>
 </template>

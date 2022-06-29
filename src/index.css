@@ -45,4 +45,22 @@
     top: 50px;
     left: 150px;
   }
+
+  .custom-select {
+    @apply appearance-none w-[255px] border-[#CED4DA] text-[#818A91] rounded-[4px] px-3 py-2;
+  }
+  .custom-select:focus {
+    @apply focus:border-sky-500;
+  }
+
+  .badge {
+    @apply w-[88px] h-[44px] bg-black text-white text-xl absolute top-3 -right-2 px-6 py-2;
+  }
+
+  .btn {
+    @apply bg-black text-white w-full p-[10px];
+  }
+  .btn:hover {
+    @apply hover:bg-[#301E5F] hover:cursor-pointer;
+  }
 }
