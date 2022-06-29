@@ -61,6 +61,6 @@
     @apply bg-black text-white w-full p-[10px];
   }
   .btn:hover {
-    @apply hover:bg-[#301E5F] hover:cursor-pointer;
+    @apply hover:bg-[#301E5F];
   }
 }
