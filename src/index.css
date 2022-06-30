@@ -21,12 +21,12 @@
   .scroll-zone {
     cursor: grab;
     transition: all 0.2s;
-    transform: scale(0.98);
+    /* transform: scale(0.98); */
     overflow: hidden;
   }
   .scroll-zone.active {
     cursor: grabbing;
-    transform: scale(1);
+    /* transform: scale(1); */
   }
 
   .circle {
@@ -35,7 +35,8 @@
   #transport li:nth-child(1):after,
   #transport li:nth-child(2):after,
   #transport li:nth-child(3):after {
-    content: '';
+    @apply w-0 h-0 border-solid border-[10px] border-l-black border-transparent absolute top-[50px] left-[150px] content-['']
+    /* content: '';
     width: 0;
     height: 0;
     border-style: solid;
@@ -43,14 +44,14 @@
     border-color: transparent transparent transparent #000;
     position: absolute;
     top: 50px;
-    left: 150px;
+    left: 150px; */;
   }
 
   .custom-select {
     @apply appearance-none w-[255px] border-[#CED4DA] text-[#818A91] rounded-[4px] px-3 py-2;
   }
   .custom-select:focus {
-    @apply focus:border-sky-500;
+    @apply border-sky-500;
   }
 
   .badge {
@@ -61,6 +62,12 @@
     @apply bg-black text-white w-full p-[10px];
   }
   .btn:hover {
-    @apply hover:bg-[#301E5F];
+    @apply bg-[#301E5F];
+  }
+  .btn-outline {
+    @apply bg-transparent px-5 py-[10px] border border-black rounded;
+  }
+  .btn-outline:hover {
+    @apply bg-black text-white;
   }
 }

@@ -1,23 +1,28 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { storeToRefs } from 'pinia';
-import storeProduct from '@/store/product';
+import StoreProduct from '@/store/product';
+import StoreCart from '@/store/cart';
 
-const store = storeProduct();
+const storeProduct = StoreProduct();
+const storeCart = StoreCart();
 const category = ref('全部');
 
 // console.log('categories', store.categories);
+// console.log('products', store.products);
 // const filterCategory = {
 //   all: (data) => data,
 //   bedstead: (data) => data.filter((item) => item.category === '床架'),
 //   store: (data) => data.filter((item) => item.category === '收納'),
 //   curtain: (data) => data.filter((item) => item.category === '窗簾'),
 // };
+const addCart = (id) => {
+  storeCart.addCart(id);
+};
 
 const filterProducts = computed(() => {
-  return store.products.filter((item) => {
+  return storeProduct.products.filter((item) => {
     if (category.value === '全部') {
-      return store.products;
+      return storeProduct.products;
     }
     return item.category.includes(category.value);
   });
@@ -25,7 +30,7 @@ const filterProducts = computed(() => {
 });
 
 onMounted(() => {
-  store.getProducts();
+  storeProduct.getProducts();
 });
 </script>
 
@@ -33,7 +38,7 @@ onMounted(() => {
   <div class="max-w-[1110px] mx-auto">
     <select class="custom-select mb-8" v-model="category">
       <option value="全部">全部</option>
-      <option :value="item" v-for="item in store.categories" :key="item">
+      <option :value="item" v-for="item in storeProduct.categories" :key="item">
         {{ item }}
       </option>
       <!-- <option value="bedstead">床架</option>
@@ -47,9 +52,13 @@ onMounted(() => {
         v-for="item in filterProducts"
         :key="item.id"
       >
-        <img class="object-cover object-center" :src="item.images" alt="" />
+        <img
+          class="object-cover object-center"
+          :src="item.images"
+          :alt="item.description"
+        />
         <div class="badge">新品</div>
-        <button class="btn mb-2">加入購物車</button>
+        <button class="btn mb-2" @click="addCart(item.id)">加入購物車</button>
         <p class="mb-2">{{ item.title }}</p>
         <p class="line-through">
           NT${{ $filters.currency(item.origin_price) }}

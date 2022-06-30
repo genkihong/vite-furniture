@@ -2,6 +2,7 @@
 import { provide } from 'vue';
 import Recommend from '@/components/Recommend.vue';
 import Product from '@/components/Product.vue';
+import Cart from '@/components/Cart.vue';
 const imgUrl = import.meta.env.PROD ? import.meta.env.VITE_IMGURL : '';
 provide('imgUrl', imgUrl);
 // console.log(imgUrl);
@@ -66,9 +67,9 @@ provide('imgUrl', imgUrl);
     <!-- 家具比較 -->
     <section id="compare" class="bg-[#F8F8F8] pt-12 mb-16">
       <h2 class="text-center text-[28px] mb-8">家具比較</h2>
-      <table class="table-auto border-[#B9B9B9] w-full max-w-[730px] mx-auto">
+      <table class="table-auto w-full max-w-[730px] mx-auto">
         <thead>
-          <tr class="border-b text-xl">
+          <tr class="border-b border-[#B9B9B9] text-xl">
             <th></th>
             <th class="pb-3">窩窩系統模組家具</th>
             <th class="text-[#797979] pb-3">組合式家具</th>
@@ -76,32 +77,32 @@ provide('imgUrl', imgUrl);
           </tr>
         </thead>
         <tbody class="text-center">
-          <tr class="border-b">
-            <td class="text-xl py-3">可單人自行組裝</td>
+          <tr class="border-b border-[#B9B9B9]">
+            <td class="text-xl text-left py-3">可單人自行組裝</td>
             <td class="text-[#6A33FF]">
               <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td class="text-[#797979]">不一定</td>
             <td></td>
           </tr>
-          <tr class="border-b">
-            <td class="text-xl py-3">可多次重複拆裝</td>
+          <tr class="border-b border-[#B9B9B9]">
+            <td class="text-xl text-left py-3">可多次重複拆裝</td>
             <td class="text-[#6A33FF]">
               <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td></td>
             <td></td>
           </tr>
-          <tr class="border-b">
-            <td class="text-xl py-3">床墊規格彈性大</td>
+          <tr class="border-b border-[#B9B9B9]">
+            <td class="text-xl text-left py-3">床墊規格彈性大</td>
             <td class="text-[#6A33FF]">
               <i class="fa-solid fa-check fa-2xl"></i>
             </td>
             <td class="text-[#797979]">不一定</td>
             <td class="text-[#797979]">不一定</td>
           </tr>
-          <tr class="border-b">
-            <td class="text-xl py-3">材質可長久使用</td>
+          <tr class="border-b border-[#B9B9B9]">
+            <td class="text-xl text-left py-3">材質可長久使用</td>
             <td class="text-[#6A33FF]">
               <i class="fa-solid fa-check fa-2xl"></i>
             </td>
@@ -110,8 +111,8 @@ provide('imgUrl', imgUrl);
               <i class="fa-solid fa-check fa-2xl"></i>
             </td>
           </tr>
-          <tr class="border-b">
-            <td class="text-xl py-3">小客車即可搬運</td>
+          <tr class="border-b border-[#B9B9B9]">
+            <td class="text-xl text-left py-3">小客車即可搬運</td>
             <td class="text-[#6A33FF]">
               <i class="fa-solid fa-check fa-2xl"></i>
             </td>
@@ -160,8 +161,12 @@ provide('imgUrl', imgUrl);
       </ul>
     </section>
     <!-- 產品列表 -->
-    <section>
+    <section class="mb-[60px]">
       <Product />
+    </section>
+
+    <section class="bg-[#F8F8F8] pt-12 pb-[70px]">
+      <Cart />
     </section>
   </div>
 </template>
