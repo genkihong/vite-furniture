@@ -47,11 +47,15 @@
     left: 150px; */;
   }
 
-  .custom-select {
-    @apply appearance-none w-[255px] border-[#CED4DA] text-[#818A91] rounded-[4px] px-3 py-2;
+  .custom-input {
+    @apply border border-[#CED4DA] rounded block w-full placeholder:text-[#818A91] px-3 py-2;
   }
+  .custom-select {
+    @apply border border-[#CED4DA] rounded block w-[255px] text-[#818A91] px-3 py-2;
+  }
+  .custom-input:focus,
   .custom-select:focus {
-    @apply border-sky-500;
+    @apply focus:ring-blue-500 focus:border-blue-500;
   }
 
   .badge {
@@ -59,13 +63,13 @@
   }
 
   .btn {
-    @apply bg-black text-white w-full p-[10px];
+    @apply bg-black text-white w-full p-2.5;
   }
   .btn:hover {
     @apply bg-[#301E5F];
   }
   .btn-outline {
-    @apply bg-transparent px-5 py-[10px] border border-black rounded;
+    @apply bg-transparent px-5 py-2.5 border border-black rounded;
   }
   .btn-outline:hover {
     @apply bg-black text-white;

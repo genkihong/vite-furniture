@@ -9,6 +9,7 @@ const category = ref('全部');
 
 // console.log('categories', store.categories);
 // console.log('products', store.products);
+
 // const filterCategory = {
 //   all: (data) => data,
 //   bedstead: (data) => data.filter((item) => item.category === '床架'),

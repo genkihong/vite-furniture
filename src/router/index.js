@@ -4,6 +4,8 @@ import {
   createWebHashHistory,
 } from 'vue-router';
 import Home from '@/views/Home.vue';
+import Order from '@/views/Order.vue';
+import Cart from '@/views/Cart.vue';
 
 const routes = [
   {
@@ -14,6 +16,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/order',
+    name: 'Order',
+    component: Order,
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart,
   },
 ];
 

@@ -1,66 +1,61 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
-export default defineStore('cart', {
+export default defineStore('order', {
   state: () => ({
-    carts: [],
-    total: 0,
-    finalTotal: 0,
+    orders: [],
   }),
   getters: {},
   actions: {
-    async addCart(id, quantity = 1) {
+    async addOrder({ name, tel, email, address, payment }) {
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
-      }/carts`;
+      }/orders`;
       try {
-        const cart = {
-          productId: id,
-          quantity,
+        const order = {
+          user: {
+            name,
+            tel,
+            email,
+            address,
+            payment,
+          },
         };
-        const res = await axios.post(api, cart);
-        this.carts = res.data.carts;
-        this.total = res.data.total;
-        this.finalTotal = res.data.finalTotal;
+        const res = await axios.post(api, order);
+        this.orders = res.data.orders;
       } catch (error) {
         console.log(error);
       }
     },
-    async getCarts() {
+    async getOrders() {
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
-      }/carts`;
+      }/orders`;
       try {
         const res = await axios.get(api);
-        this.carts = res.data.carts;
-        this.total = res.data.total;
-        this.finalTotal = res.data.finalTotal;
+        this.orders = res.data.orders;
       } catch (error) {
         console.log(error);
       }
     },
-    async deleteUniCart(id) {
+    async deleteUniOrder(id) {
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
-      }/carts/${id}`;
+      }/orders/${id}`;
       try {
         const res = await axios.delete(api);
-        this.carts = res.data.carts;
-        this.total = res.data.total;
-        this.finalTotal = res.data.finalTotal;
+        this.orders = res.data.orders;
       } catch (error) {
         console.log(error);
       }
     },
-    async deleteCarts() {
+    async deleteOrders() {
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
-      }/carts`;
+      }/orders`;
       try {
         const res = await axios.delete(api);
-        this.carts = res.data.carts;
-        this.total = res.data.total;
-        this.finalTotal = res.data.finalTotal;
+        this.orders = res.data.orders;
       } catch (error) {
         console.log(error);
       }

@@ -18,7 +18,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <section class="bg-[#F8F8F8] pt-12 pb-[70px] mb-[60px]">
     <h2 class="text-center text-[28px] mb-8">我的購物車</h2>
     <table class="table-auto w-full max-w-[920px] mx-auto text-xl text-left">
       <thead>
@@ -70,7 +70,7 @@ onMounted(() => {
         </tr>
       </tfoot>
     </table>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped></style>
