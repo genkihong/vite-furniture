@@ -24,7 +24,6 @@ export default defineStore('product', {
       }/products`;
       try {
         const res = await axios.get(api);
-        // console.log(res.data);
         this.products = res.data.products;
       } catch (error) {
         console.log(error);

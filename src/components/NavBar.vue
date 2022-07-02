@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue';
+import StoreCart from '@/store/cart';
+const storeCart = StoreCart();
+
+onMounted(() => {
+  storeCart.getCarts();
+});
+</script>
 
 <template>
   <header class="max-w-[1110px] mx-auto">
@@ -24,11 +32,14 @@
         </li>
         <li
           class="hover:text-[#6A33F8]"
-          :class="{ 'text-[#6A33F8]': $route.name == 'Cart' }"
+          :class="{ 'text-[#6A33F8]': $route.name == 'Carts' }"
         >
-          <router-link to="/cart"
-            ><i class="fa-solid fa-cart-arrow-down fa-lg"></i
-          ></router-link>
+          <router-link to="/carts">
+            <i class="fa-solid fa-cart-arrow-down fa-lg"></i>
+            <span v-if="storeCart.cartsLength">
+              ({{ storeCart.cartsLength }})
+            </span>
+          </router-link>
         </li>
       </ul>
     </nav>

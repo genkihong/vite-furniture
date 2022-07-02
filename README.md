@@ -13,3 +13,8 @@ https://genkihong.github.io/vite-furniture/#/
 * [Axios](https://github.com/axios/axios)
 
 * [Tailwind CSS](https://tailwindcss.com/docs/installation)
+
+* [sweetalert2](https://sweetalert2.github.io/)
+
+
+

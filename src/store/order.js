@@ -11,8 +11,8 @@ export default defineStore('order', {
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
       }/orders`;
-      try {
-        const order = {
+      const order = {
+        data: {
           user: {
             name,
             tel,
@@ -20,7 +20,9 @@ export default defineStore('order', {
             address,
             payment,
           },
-        };
+        },
+      };
+      try {
         const res = await axios.post(api, order);
         this.orders = res.data.orders;
       } catch (error) {
@@ -32,7 +34,11 @@ export default defineStore('order', {
         import.meta.env.VITE_CUSTOM_PATH
       }/orders`;
       try {
-        const res = await axios.get(api);
+        const res = await axios.get(api, {
+          headers: {
+            Authorization: token,
+          },
+        });
         this.orders = res.data.orders;
       } catch (error) {
         console.log(error);

@@ -1,20 +1,23 @@
 <script setup>
 import { provide, ref, onMounted, computed } from 'vue';
+// import Swal from 'sweetalert2';
 import StoreProduct from '@/store/product';
-import StoreCart from '@/store/cart';
 import Recommend from '@/components/Recommend.vue';
+import Product from '@/components/Product.vue';
 
 const storeProduct = StoreProduct();
-const storeCart = StoreCart();
 const category = ref('全部');
 const imgUrl = import.meta.env.PROD ? import.meta.env.VITE_IMGURL : '';
 provide('imgUrl', imgUrl);
+
 // console.log(process.env.NODE_ENV);
 // console.log(import.meta.env);
-const addCart = (id) => {
-  storeCart.addCart(id);
-};
-
+// const filterCategory = {
+//   all: (data) => data,
+//   bedstead: (data) => data.filter((item) => item.category === '床架'),
+//   store: (data) => data.filter((item) => item.category === '收納'),
+//   curtain: (data) => data.filter((item) => item.category === '窗簾'),
+// };
 const filterProducts = computed(() => {
   return storeProduct.products.filter((item) => {
     if (category.value === '全部') {
@@ -157,7 +160,7 @@ onMounted(() => {
     </ul>
   </section>
   <!-- 產品列表 -->
-  <section class="mb-[60px]">
+  <section id="products" class="mb-[60px]">
     <!-- <Product /> -->
     <div class="max-w-[1110px] mx-auto">
       <select class="custom-select mb-8" v-model="category">
@@ -172,7 +175,12 @@ onMounted(() => {
       </select>
 
       <ul class="grid grid-cols-1 md:grid-cols-4 gap-[30px]">
-        <li
+        <Product
+          v-for="product in filterProducts"
+          :key="product.id"
+          :product="product"
+        />
+        <!-- <li
           class="h-[460px] text-xl relative rounded-b"
           v-for="item in filterProducts"
           :key="item.id"
@@ -183,13 +191,24 @@ onMounted(() => {
             :alt="item.description"
           />
           <div class="badge">新品</div>
-          <button class="btn mb-2" @click="addCart(item.id)">加入購物車</button>
+          <button
+            class="btn w-full mb-2"
+            @click="addCart(item.id)"
+            :class="{ 'cursor-not-allowed': storeCart.loadingId === item.id }"
+            :disabled="storeCart.loadingId === item.id"
+          >
+            <i
+              class="fa-solid fa-spinner fa-spin-pulse"
+              v-if="storeCart.loadingId === item.id"
+            ></i>
+            加入購物車
+          </button>
           <p class="mb-2">{{ item.title }}</p>
           <p class="line-through">
             NT${{ $filters.currency(item.origin_price) }}
           </p>
           <p class="text-[28px]">NT${{ $filters.currency(item.price) }}</p>
-        </li>
+        </li> -->
       </ul>
     </div>
   </section>

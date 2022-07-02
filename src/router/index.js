@@ -5,7 +5,7 @@ import {
 } from 'vue-router';
 import Home from '@/views/Home.vue';
 import Order from '@/views/Order.vue';
-import Cart from '@/views/Cart.vue';
+import Carts from '@/views/Carts.vue';
 
 const routes = [
   {
@@ -23,9 +23,9 @@ const routes = [
     component: Order,
   },
   {
-    path: '/cart',
-    name: 'Cart',
-    component: Cart,
+    path: '/carts',
+    name: 'Carts',
+    component: Carts,
   },
 ];
 

@@ -51,7 +51,7 @@
     @apply border border-[#CED4DA] rounded block w-full placeholder:text-[#818A91] px-3 py-2;
   }
   .custom-select {
-    @apply border border-[#CED4DA] rounded block w-[255px] text-[#818A91] px-3 py-2;
+    @apply border border-[#CED4DA] rounded block text-[#818A91];
   }
   .custom-input:focus,
   .custom-select:focus {
@@ -63,7 +63,7 @@
   }
 
   .btn {
-    @apply bg-black text-white w-full p-2.5;
+    @apply bg-black text-white p-2.5;
   }
   .btn:hover {
     @apply bg-[#301E5F];
