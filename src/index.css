@@ -48,14 +48,14 @@
   }
 
   .custom-input {
-    @apply border border-[#CED4DA] rounded block w-full placeholder:text-[#818A91] px-3 py-2;
+    @apply border-[#CED4DA] rounded placeholder:text-[#818A91];
   }
   .custom-select {
-    @apply border border-[#CED4DA] rounded block text-[#818A91];
+    @apply border-[#CED4DA] rounded block text-[#818A91];
   }
   .custom-input:focus,
   .custom-select:focus {
-    @apply focus:ring-blue-500 focus:border-blue-500;
+    @apply ring-blue-500 border-blue-500;
   }
 
   .badge {

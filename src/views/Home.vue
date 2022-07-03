@@ -163,7 +163,7 @@ onMounted(() => {
   <section id="products" class="mb-[60px]">
     <!-- <Product /> -->
     <div class="max-w-[1110px] mx-auto">
-      <select class="custom-select mb-8" v-model="category">
+      <select class="custom-select mb-8 w-[255px]" v-model="category">
         <option value="全部">全部</option>
         <option
           :value="item"

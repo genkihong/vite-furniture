@@ -2,30 +2,55 @@
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useStore } from '../store/main';
+import { useForm, useField } from 'vee-validate';
 
 const store = useStore();
-// console.log(store)
-// console.log(storeToRefs(store));
-// console.log(storeToRefs(store).todos)
-// console.log(store.todos);
 const { todos, counter, test, doubleCount, completedTodo } = storeToRefs(store); //解構 store
-// console.log(todos);
-// console.log(test);
 const { obj, arr } = test.value;
-// console.log(obj);
-
 const handleClick = () => {
   obj.name = 'two';
 };
-// defineProps({
-//   msg: String,
-// });
 
-// const count = ref(0)
+//vee-validate Form-level Validation
+const simpleSchema = {
+  userName(value) {
+    if (value && value.trim()) {
+      console.log('name', value);
+      return true;
+    }
+    return '必填';
+  },
+  tel(value) {
+    if (value && value.trim()) {
+      console.log('tel', value);
+      return true;
+    }
+    return '必填';
+  },
+};
+
+const { handleSubmit } = useForm({
+  validationSchema: simpleSchema,
+});
+
+const addOrder = handleSubmit((user) => {
+  console.log('submit', user);
+  storeOrder.addOrder(user);
+});
+
+const { value: name, errorMessage: userNameError } = useField('userName');
+const { value: tel, errorMessage: telError } = useField('tel');
 </script>
 
 <template>
-  <h1>Home</h1>
+  <form @submit="addOrder">
+    <input v-model="name" type="text" name="userName" />
+    <span>{{ userNameError }}</span>
+    <input v-model="tel" type="text" name="tel" />
+    <span>{{ telError }}</span>
+    <button>Submit</button>
+  </form>
+  <!-- <h1>Home</h1>
   <ul>
     <li v-for="todo in todos" :key="todo.id">
       {{ todo.id }}:{{ todo.name }} - {{ todo.isCompleted }}
@@ -43,29 +68,7 @@ const handleClick = () => {
   <div>obj name is {{ obj.name }}</div>
   <div>{{ doubleCount }}</div>
   <button type="button" @click="counter++">count is: {{ counter }}</button>
-  <button type="button" @click="handleClick">change obj</button>
-
-  <!-- <h1>{{ msg }}</h1> -->
-
-  <!-- <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p> -->
-
-  <!-- <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p> -->
+  <button type="button" @click="handleClick">change obj</button> -->
 </template>
 
 <style scoped>
