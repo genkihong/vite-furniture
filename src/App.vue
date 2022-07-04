@@ -5,7 +5,7 @@ import NavBar from '@/components/NavBar.vue'; //要有副檔名.vue
 </script>
 
 <template>
-  <div class="container mx-auto">
+  <div class="max-w-[1920px] mx-auto">
     <NavBar />
     <router-view></router-view>
   </div>

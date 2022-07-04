@@ -9,19 +9,16 @@ const props = defineProps({
 const storeCart = StoreCart();
 const quantity = ref(props.cart.quantity);
 
-const deleteUniCart = async (id) => {
-  try {
-    const result = await Swal.fire({
-      title: '確定要刪除?',
-      // text: "You won't be able to revert this!",
-      icon: 'warning',
-      position: 'top',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '確定',
-      cancelButtonText: '取消',
-    });
+const deleteUniCart = (id) => {
+  Swal.fire({
+    title: '確定要刪除?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '確定',
+    cancelButtonText: '取消',
+  }).then((result) => {
     if (result.isConfirmed) {
       storeCart.deleteUniCart(id);
       Swal.fire({
@@ -36,29 +33,10 @@ const deleteUniCart = async (id) => {
         timer: 1000,
       });
     }
-  } catch (error) {
-    console.log(error);
-  }
-  // Swal.fire({
-  //   title: '確定要刪除?',
-  //   // text: "You won't be able to revert this!",
-  //   icon: 'warning',
-  //   showCancelButton: true,
-  //   confirmButtonColor: '#3085d6',
-  //   cancelButtonColor: '#d33',
-  //   confirmButtonText: '確定',
-  //   cancelButtonText: '取消',
-  // }).then((result) => {
-  //   if (result.isConfirmed) {
-  //     storeCart.deleteUniCart(id);
-  //     Swal.fire('', '已刪除', 'success');
-  //   }
-  // });
+  });
 };
 
 watch(quantity, (newVal, oldVal) => {
-  // console.log('new', newVal);
-  // console.log('old', oldVal);
   storeCart.patchCarts(props.cart.id, newVal);
 });
 </script>

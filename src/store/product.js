@@ -11,9 +11,7 @@ export default defineStore('product', {
       state.products.forEach((item) => {
         set.add(item.category);
       });
-      // console.log('set', set);
       const categories = [...set]; //Array.from(set)
-      // console.log('getters', categories);
       return categories;
     },
   },
@@ -26,7 +24,7 @@ export default defineStore('product', {
         const res = await axios.get(api);
         this.products = res.data.products;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
   },

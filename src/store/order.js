@@ -26,7 +26,7 @@ export default defineStore('order', {
         const res = await axios.post(api, order);
         this.orders = res.data.orders;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async getOrders() {
@@ -41,7 +41,7 @@ export default defineStore('order', {
         });
         this.orders = res.data.orders;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async deleteUniOrder(id) {
@@ -52,7 +52,7 @@ export default defineStore('order', {
         const res = await axios.delete(api);
         this.orders = res.data.orders;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async deleteOrders() {
@@ -63,7 +63,7 @@ export default defineStore('order', {
         const res = await axios.delete(api);
         this.orders = res.data.orders;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
   },

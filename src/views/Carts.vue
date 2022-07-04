@@ -2,22 +2,20 @@
 import { onMounted } from 'vue';
 import StoreCart from '@/store/cart';
 import UniCart from '@/components/UniCart.vue';
-
+// import Swal from 'sweetalert2';
 const storeCart = StoreCart();
 
-const deleteCarts = async () => {
-  try {
-    const result = await Swal.fire({
-      title: '確定要刪除所有品項?',
-      // text: "You won't be able to revert this!",
-      icon: 'warning',
-      position: 'top',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '確定',
-      cancelButtonText: '取消',
-    });
+const deleteCarts = () => {
+  Swal.fire({
+    title: '確定要刪除所有品項?',
+    icon: 'warning',
+    position: 'top',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '確定',
+    cancelButtonText: '取消',
+  }).then((result) => {
     if (result.isConfirmed) {
       storeCart.deleteCarts();
       Swal.fire({
@@ -32,9 +30,7 @@ const deleteCarts = async () => {
         timer: 1000,
       });
     }
-  } catch (error) {
-    console.log(error);
-  }
+  });
 };
 
 onMounted(() => {
@@ -51,53 +47,26 @@ onMounted(() => {
     >
       <thead>
         <tr>
-          <th class="w-[10%]">品項</th>
-          <th class="w-1/2"></th>
-          <th class="w-1/5">單價</th>
-          <th class="w-1/5">數量</th>
-          <th>金額</th>
+          <th class="w-[120px]">品項</th>
+          <th class="w-[280px]"></th>
+          <th class="w-[160px]">單價</th>
+          <th class="w-[120px]">數量</th>
+          <th class="w-[160px]">金額</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <UniCart v-for="cart in storeCart.carts" :key="cart.id" :cart="cart" />
-        <!-- <tr
-          class="border-b border-[#B9B9B9]"
-          v-for="item in storeCart.carts"
-          :key="item.id"
-        >
-          <td class="py-5">
-            <div
-              class="w-20 h-20 bg-cover bg-center"
-              :style="{ backgroundImage: `url(${item.product.images})` }"
-            ></div>
-          </td>
-          <td>{{ item.product.title }}</td>
-          <td>NT${{ $filters.currency(item.product.price) }}</td>
-          <td>
-            <select class="custom-select w-16" v-model="quantity">
-              <option :value="num" v-for="num in 6" :key="num">
-                {{ num }}
-              </option>
-            </select>
-          </td>
-          <td>NT${{ $filters.currency(quantity * item.product.price) }}</td>
-          <td class="text-center">
-            <button @click="deleteUniCart(item.id)">
-              <i class="fa-solid fa-x fa-lg"></i>
-            </button>
-          </td>
-        </tr> -->
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4" class="py-5">
+          <td colspan="3" class="py-5">
             <button class="btn-outline" @click="deleteCarts">
               刪除所有品項
             </button>
           </td>
           <td>總金額</td>
-          <td class="text-end text-[28px]">
+          <td colspan="2" class="text-end text-[28px] min-w-[180px]">
             NT${{ $filters.currency(storeCart.finalTotal) }}
           </td>
         </tr>

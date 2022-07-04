@@ -26,9 +26,6 @@ const dragHandle = (e) => {
   if (!isActive.value) return;
   const move = e.pageX - startX; //計算移動距離(現在座標 - 起始座標)
   scroll.value.scrollLeft = startScrollLeft - move; //向左拖曳 pageX 值會遞減，所以 move 會負值
-  //console.log(e.pageX);
-  //console.log(startX);
-  //console.log(startScrollLeft);
 };
 
 //滑鼠離開或放開時

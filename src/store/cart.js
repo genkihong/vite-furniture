@@ -23,7 +23,7 @@ export default defineStore('cart', {
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async addCart(id, quantity = 1) {
@@ -44,7 +44,7 @@ export default defineStore('cart', {
         this.finalTotal = res.data.finalTotal;
         this.loadingId = '';
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async patchCarts(id, quantity = 1) {
@@ -63,7 +63,7 @@ export default defineStore('cart', {
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async deleteCarts() {
@@ -77,7 +77,7 @@ export default defineStore('cart', {
         this.finalTotal = res.data.finalTotal;
         this.message = res.data.message;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async deleteUniCart(id) {
@@ -90,7 +90,7 @@ export default defineStore('cart', {
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
   },
