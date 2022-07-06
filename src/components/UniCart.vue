@@ -13,6 +13,7 @@ const deleteUniCart = (id) => {
   Swal.fire({
     title: '確定要刪除?',
     icon: 'warning',
+    position: 'top',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',

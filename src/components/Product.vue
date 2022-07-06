@@ -1,11 +1,13 @@
 <script setup>
+import { toRef } from 'vue';
 import StoreCart from '@/store/cart';
 
+const storeCart = StoreCart();
 const props = defineProps({
   product: Object,
 });
 
-const storeCart = StoreCart();
+const product = toRef(props, 'product');
 
 const addCart = (id) => {
   storeCart.addCart(id);
@@ -27,29 +29,27 @@ const addCart = (id) => {
   <li class="h-[460px] text-xl relative rounded-b">
     <img
       class="object-cover object-center"
-      :src="props.product.images"
-      :alt="props.product.description"
+      :src="product.images"
+      :alt="product.description"
     />
     <div class="badge">新品</div>
     <button
       class="btn w-full mb-2"
-      @click="addCart(props.product.id)"
+      @click="addCart(product.id)"
       :class="{
-        'cursor-not-allowed': storeCart.loadingId === props.product.id,
+        'cursor-not-allowed': storeCart.loadingId === product.id,
       }"
-      :disabled="storeCart.loadingId === props.product.id"
+      :disabled="storeCart.loadingId === product.id"
     >
       <i
         class="fa-solid fa-spinner fa-spin-pulse"
-        v-if="storeCart.loadingId === props.product.id"
+        v-if="storeCart.loadingId === product.id"
       ></i>
       加入購物車
     </button>
-    <p class="mb-2">{{ props.product.title }}</p>
-    <p class="line-through">
-      NT${{ $filters.currency(props.product.origin_price) }}
-    </p>
-    <p class="text-[28px]">NT${{ $filters.currency(props.product.price) }}</p>
+    <p class="mb-2">{{ product.title }}</p>
+    <p class="line-through">NT${{ $filters.currency(product.origin_price) }}</p>
+    <p class="text-[28px]">NT${{ $filters.currency(product.price) }}</p>
   </li>
 </template>
 
