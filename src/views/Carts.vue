@@ -1,9 +1,11 @@
 <script setup>
 import { onMounted } from 'vue';
-import StoreCart from '@/store/cart';
+import StatusStore from '@/store/status';
+import CartStore from '@/store/cart';
 import UniCart from '@/components/UniCart.vue';
 // import Swal from 'sweetalert2';
-const storeCart = StoreCart();
+const statusStore = StatusStore();
+const cartStore = CartStore();
 
 const deleteCarts = () => {
   Swal.fire({
@@ -17,7 +19,7 @@ const deleteCarts = () => {
     cancelButtonText: '取消',
   }).then((result) => {
     if (result.isConfirmed) {
-      storeCart.deleteCarts();
+      cartStore.deleteCarts();
       Swal.fire({
         toast: true,
         width: '20rem',
@@ -34,16 +36,17 @@ const deleteCarts = () => {
 };
 
 onMounted(() => {
-  storeCart.getCarts();
+  cartStore.getCarts();
 });
 </script>
 
 <template>
+  <loading v-model:active="statusStore.isLoading" />
   <section class="bg-[#F8F8F8] pt-12 pb-[70px]">
     <h2 class="text-center text-[28px] mb-8">我的購物車</h2>
     <table
       class="table-auto w-full max-w-[920px] mx-auto text-xl text-left"
-      v-if="storeCart.cartsLength"
+      v-if="cartStore.cartsLength"
     >
       <thead>
         <tr>
@@ -56,7 +59,7 @@ onMounted(() => {
         </tr>
       </thead>
       <tbody>
-        <UniCart v-for="cart in storeCart.carts" :key="cart.id" :cart="cart" />
+        <UniCart v-for="cart in cartStore.carts" :key="cart.id" :cart="cart" />
       </tbody>
       <tfoot>
         <tr>
@@ -67,7 +70,7 @@ onMounted(() => {
           </td>
           <td>總金額</td>
           <td colspan="2" class="text-end text-[28px] min-w-[180px]">
-            NT${{ $filters.currency(storeCart.finalTotal) }}
+            NT${{ $filters.currency(cartStore.finalTotal) }}
           </td>
         </tr>
         <tr>
@@ -80,7 +83,7 @@ onMounted(() => {
       </tfoot>
     </table>
     <div class="max-w-[920px] mx-auto" v-else>
-      <h2 class="text-xl text-center mb-8">{{ storeCart.message }}</h2>
+      <h2 class="text-xl text-center mb-8">{{ cartStore.message }}</h2>
       <router-link class="btn block text-center rounded" to="/">
         繼續購物
       </router-link>

@@ -1,10 +1,13 @@
 <script setup>
 import { provide, ref, onMounted, computed } from 'vue';
+import StoreStatus from '@/store/status';
 import StoreProduct from '@/store/product';
 import Recommend from '@/components/Recommend.vue';
 import Product from '@/components/Product.vue';
 
+const storeStatus = StoreStatus();
 const storeProduct = StoreProduct();
+
 const category = ref('全部');
 const imgUrl = import.meta.env.PROD ? import.meta.env.VITE_IMGURL : '';
 
@@ -25,6 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <loading v-model:active="storeStatus.isLoading" />
   <!-- banner -->
   <section class="banner mb-[60px] max-w-[1110px] mx-auto">
     <div

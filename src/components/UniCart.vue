@@ -1,13 +1,13 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { toRef, watch } from 'vue';
 import StoreCart from '@/store/cart';
 
+const storeCart = StoreCart();
 const props = defineProps({
   cart: Object,
 });
-// console.log(props.cart);
-const storeCart = StoreCart();
-const quantity = ref(props.cart.quantity);
+
+const cart = toRef(props, 'cart');
 
 const deleteUniCart = (id) => {
   Swal.fire({
@@ -37,9 +37,12 @@ const deleteUniCart = (id) => {
   });
 };
 
-watch(quantity, (newVal, oldVal) => {
-  storeCart.patchCarts(props.cart.id, newVal);
-});
+watch(
+  () => cart.value.quantity, //監聽 ref 物件的值
+  (newVal, oldVal) => {
+    storeCart.patchCarts(cart.value.id, newVal);
+  }
+);
 </script>
 
 <template>
@@ -47,21 +50,21 @@ watch(quantity, (newVal, oldVal) => {
     <td class="py-5">
       <div
         class="w-20 h-20 bg-cover bg-center"
-        :style="{ backgroundImage: `url(${props.cart.product.images})` }"
+        :style="{ backgroundImage: `url(${cart.product.images})` }"
       ></div>
     </td>
-    <td>{{ props.cart.product.title }}</td>
-    <td>NT${{ $filters.currency(props.cart.product.price) }}</td>
+    <td>{{ cart.product.title }}</td>
+    <td>NT${{ $filters.currency(cart.product.price) }}</td>
     <td>
-      <select class="custom-select w-16" v-model="quantity">
+      <select class="custom-select w-16" v-model="cart.quantity">
         <option :value="num" v-for="num in 6" :key="num">
           {{ num }}
         </option>
       </select>
     </td>
-    <td>NT${{ $filters.currency(quantity * props.cart.product.price) }}</td>
+    <td>NT${{ $filters.currency(cart.quantity * cart.product.price) }}</td>
     <td class="text-center">
-      <button @click="deleteUniCart(props.cart.id)">
+      <button @click="deleteUniCart(cart.id)">
         <i class="fa-solid fa-x fa-lg"></i>
       </button>
     </td>

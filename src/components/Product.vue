@@ -9,19 +9,8 @@ const props = defineProps({
 
 const product = toRef(props, 'product');
 
-const addCart = (id) => {
-  storeCart.addCart(id);
-  Swal.fire({
-    toast: true,
-    width: '15rem',
-    background: '#6A33F8',
-    color: '#FFFFFF',
-    position: 'top-end',
-    icon: 'success',
-    title: '已加入購物車',
-    showConfirmButton: false,
-    timer: 1000,
-  });
+const addCart = (productId) => {
+  storeCart.addCart(productId);
 };
 </script>
 

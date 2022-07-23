@@ -1,5 +1,6 @@
-import { defineStore } from 'pinia';
 import axios from 'axios';
+import { defineStore } from 'pinia';
+import StatusStore from './status';
 
 export default defineStore('product', {
   state: () => ({
@@ -17,12 +18,15 @@ export default defineStore('product', {
   },
   actions: {
     async getProducts() {
+      const status = StatusStore();
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
       }/products`;
+      status.isLoading = true;
       try {
         const res = await axios.get(api);
         this.products = res.data.products;
+        status.isLoading = false;
       } catch (error) {
         console.log(error.response);
       }

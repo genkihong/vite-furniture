@@ -1,5 +1,6 @@
-import { defineStore } from 'pinia';
 import axios from 'axios';
+import { defineStore } from 'pinia';
+import StatusStore from './status';
 
 export default defineStore('cart', {
   state: () => ({
@@ -14,26 +15,29 @@ export default defineStore('cart', {
   },
   actions: {
     async getCarts() {
+      const status = StatusStore();
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
       }/carts`;
+      status.isLoading = true;
       try {
         const res = await axios.get(api);
         this.carts = res.data.carts;
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
+        status.isLoading = false;
       } catch (error) {
         console.log(error.response);
       }
     },
-    async addCart(id, quantity = 1) {
+    async addCart(productId, quantity = 1) {
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
       }/carts`;
-      this.loadingId = id;
+      this.loadingId = productId;
       const cart = {
         data: {
-          productId: id,
+          productId,
           quantity,
         },
       };
@@ -43,14 +47,27 @@ export default defineStore('cart', {
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
         this.loadingId = '';
+        Swal.fire({
+          toast: true,
+          width: '15rem',
+          background: '#6A33F8',
+          color: '#FFFFFF',
+          position: 'top-end',
+          icon: 'success',
+          title: '已加入購物車',
+          showConfirmButton: false,
+          timer: 1000,
+        });
       } catch (error) {
         console.log(error.response);
       }
     },
     async patchCarts(id, quantity = 1) {
+      const status = StatusStore();
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
       }/carts`;
+      status.isLoading = true;
       const cart = {
         data: {
           id,
@@ -62,33 +79,40 @@ export default defineStore('cart', {
         this.carts = res.data.carts;
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
+        status.isLoading = false;
       } catch (error) {
         console.log(error.response);
       }
     },
     async deleteCarts() {
+      const status = StatusStore();
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
       }/carts`;
+      status.isLoading = true;
       try {
         const res = await axios.delete(api);
         this.carts = res.data.carts;
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
         this.message = res.data.message;
+        status.isLoading = false;
       } catch (error) {
         console.log(error.response);
       }
     },
     async deleteUniCart(id) {
+      const status = StatusStore();
       const api = `${import.meta.env.VITE_API_PATH}/api/livejs/v1/customer/${
         import.meta.env.VITE_CUSTOM_PATH
       }/carts/${id}`;
+      status.isLoading = true;
       try {
         const res = await axios.delete(api);
         this.carts = res.data.carts;
         this.total = res.data.total;
         this.finalTotal = res.data.finalTotal;
+        status.isLoading = false;
       } catch (error) {
         console.log(error.response);
       }
